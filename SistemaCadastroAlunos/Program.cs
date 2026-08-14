@@ -21,7 +21,7 @@
 
             if (!int.TryParse(entrada, out opcao))
             {
-                Console.WriteLine("Entrada inválida. Digite um número válido.");
+                Console.WriteLine("Entrada inválida. Digite apenas números.");
                 opcao = -1;
                 continue;
             }
