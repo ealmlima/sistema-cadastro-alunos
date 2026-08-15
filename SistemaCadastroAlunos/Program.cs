@@ -72,7 +72,10 @@
             Console.WriteLine($"Nome: {nomeAluno[i]}");
             Console.WriteLine($"Idade: {idadeAluno[i]}");
             Console.WriteLine($"Média: {mediaNotas:F1}");
+
+            Console.WriteLine();
             Console.WriteLine("-------------------------");
+            Console.WriteLine();
         }
 
     }
