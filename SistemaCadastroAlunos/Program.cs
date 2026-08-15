@@ -2,63 +2,7 @@
 {
     static void Main()
     {
-        string[] nomeAluno =
-        {
-            "João",
-            "Maria",
-            "Pedro",
-            "Ana",
-            "Carlos",
-            "Juliana",
-            "Lucas",
-            "Beatriz",
-            "Rafael",
-            "Camila"
-        };
-
-        int[] idadeAluno =
-        {
-            18,
-            19,
-            20,
-            18,
-            21,
-            19,
-            22,
-            20,
-            18,
-            21
-        };
-
-        double[] nota1 =
-        {
-            8.5,
-            7.0,
-            9.5,
-            6.0,
-            8.0,
-            7.5,
-            9.0,
-            6.5,
-            5.5,
-            10.0
-        };
-
-        double[] nota2 =
-        {
-            7.5,
-            8.0,
-            9.0,
-            7.5,
-            8.5,
-            9.0,
-            8.0,
-            7.5,
-            6.5,
-            9.5
-        };
-
-        ListarAlunos(nomeAluno, idadeAluno, nota1, nota2);
+       
 
 
     }
