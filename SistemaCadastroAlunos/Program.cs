@@ -95,16 +95,9 @@ class Program
         Console.WriteLine("Cadastro realizado com sucesso!");
         Console.WriteLine();
 
-
         Console.ForegroundColor = ConsoleColor.White;
         Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.WriteLine("=== Menu ===");
         Console.ResetColor();
-
-        //Testando se todos os dados foram preenchidos corretamente no array
-        for (int i = 0; i < nomeAluno.Length; i++)
-        {
-            Console.WriteLine($"Aluno: {nomeAluno[i]}, Idade: {idadeAluno[i]}, Nota 1: {nota1[i]}, Nota 2: {nota2[i]}");
-        }
     }
 }
