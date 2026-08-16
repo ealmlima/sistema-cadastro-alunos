@@ -7,14 +7,15 @@
         do
         {
             Console.WriteLine(" === Menu de opções ===");
-            Console.WriteLine();
-            Console.WriteLine("Selecione a opção desejada:");
+           
             Console.WriteLine();
             Console.WriteLine("1 - Listar alunos");
             Console.WriteLine("2 - Buscar aluno");
             Console.WriteLine("3 - Exibir aprovados");
             Console.WriteLine("4 - Exibir média");
             Console.WriteLine("0 - Sair");
+            Console.WriteLine();             
+            Console.WriteLine("Selecione a opção desejada:");
             Console.WriteLine();
 
             string? entrada = Console.ReadLine();
