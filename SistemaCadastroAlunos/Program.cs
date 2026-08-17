@@ -7,7 +7,7 @@
         {
         Console.Write("Digite o nome do Aluno: ");
         string nomeBusca = Console.ReadLine();
-        }
+        
         bool encontrado = false;
 
         for(int i = 0; i<nomes.Length;i++)
@@ -16,7 +16,7 @@
             {
                 encontrado = true;
 
-                 double media = calcularmedia(notas1[i],notas2[i]);
+            double media = calcularMedia(notas1[i], notas2[i]);
 
             Console.WriteLine("Aluno encontrado!");
             Console.WriteLine($"Nome: {nomes[i]}");
@@ -32,5 +32,10 @@
                 Console.WriteLine("Aluno não encontrado");
             }
         }
+        static double calcularMedia(double nota1, double nota2)
+        {
+            return (nota1 + nota2) / 2;
+        }
     }
+}
 }
