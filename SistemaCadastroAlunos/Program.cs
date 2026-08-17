@@ -2,12 +2,26 @@
 
 class Program
 {
+    static string[] nomeAluno = new string[10];
+    static int[] idadeAluno = new int[10];
+    static double[] nota1 = new double[10];
+    static double[] nota2 = new double[10];
+
     static void Main()
     {
-        string[] nomeAluno = new string[10];
-        int[] idadeAluno = new int[10];
-        double[] nota1 = new double[10];
-        double[] nota2 = new double[10];
+        CadastroInicial();
+
+        //chama o menu
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.WriteLine("=== Menu ===");
+        Console.ResetColor();
+    }
+
+    static void CadastroInicial()
+    {
+        int contador = 0;
+        string cadastrarNovoAluno;
 
         Console.ForegroundColor = ConsoleColor.Black;
         Console.BackgroundColor = ConsoleColor.Green;
@@ -15,10 +29,10 @@ class Program
         Console.WriteLine();
         Console.ResetColor();
 
-        for (int i = 0; i < 10; i++)
+        do
         {
             string _nomeAluno;
-            Console.WriteLine("Aluno {0}", i + 1);
+            Console.WriteLine("Aluno {0}", contador + 1);
             Console.WriteLine("--------------------");
 
             do
@@ -36,7 +50,7 @@ class Program
                 }
 
             } while (string.IsNullOrWhiteSpace(_nomeAluno) || !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"));
-            nomeAluno[i] = _nomeAluno;
+            nomeAluno[contador] = _nomeAluno;
 
             int _idadeAluno;
             bool isValidIdade = false;
@@ -53,7 +67,7 @@ class Program
                     Console.WriteLine();
                 }
             } while (!isValidIdade || _idadeAluno <= 0 || _idadeAluno > 120);
-            idadeAluno[i] = _idadeAluno;
+            idadeAluno[contador] = _idadeAluno;
 
             double _nota1;
             bool isValidNota1 = false;
@@ -70,7 +84,7 @@ class Program
                     Console.WriteLine();
                 }
             } while (!isValidNota1 || _nota1 < 0 || _nota1 > 10);
-            nota1[i] = _nota1;
+            nota1[contador] = _nota1;
 
             double _nota2;
             bool isValidNota2 = false;
@@ -87,17 +101,26 @@ class Program
                     Console.WriteLine();
                 }
             } while (!isValidNota2 || _nota2 < 0 || _nota2 > 10);
-            nota2[i] = _nota2;
+            nota2[contador] = _nota2;
 
             Console.WriteLine();
-        }
+            contador++;
 
-        Console.WriteLine("Cadastro realizado com sucesso!");
-        Console.WriteLine();
+            if (contador < 10)
+            {
+                Console.WriteLine("Cadastro realizado com sucesso! Deseja cadastrar outro aluno? (s/n)");
+                cadastrarNovoAluno = Console.ReadLine();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Limite de cadastro atingido! Não é possível cadastrar mais alunos.");
+                Console.ResetColor();
+                cadastrarNovoAluno = "n";
+            }
 
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
-        Console.WriteLine("=== Menu ===");
-        Console.ResetColor();
+        } while (cadastrarNovoAluno.ToLower() == "s" && contador < 10);
+
     }
 }
