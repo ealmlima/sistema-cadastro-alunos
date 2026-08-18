@@ -22,7 +22,6 @@ class Program
             Console.WriteLine("1 - Listar alunos");
             Console.WriteLine("2 - Buscar aluno");
             Console.WriteLine("3 - Exibir aprovados");
-            Console.WriteLine("4 - Exibir média");
             Console.WriteLine("0 - Sair");
             Console.WriteLine();
 
@@ -54,7 +53,6 @@ class Program
                 case 0:
                     Console.WriteLine("Programa Encerrado");
                     break;
-
                 default:
                     Console.WriteLine("Você selecionou uma opção inválida");
                     break;
@@ -70,7 +68,6 @@ class Program
 
     static void CadastroInicial()
     {
-        int contador = 0;
         string cadastrarNovoAluno;
 
         Console.ForegroundColor = ConsoleColor.Black;
@@ -91,8 +88,7 @@ class Program
                 Console.Write("Nome: ");
                 _nomeAluno = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(_nomeAluno) ||
-                    !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"))
+                if (string.IsNullOrWhiteSpace(_nomeAluno) || !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"))
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.Red;
@@ -101,8 +97,7 @@ class Program
                     Console.WriteLine();
                 }
 
-            } while (string.IsNullOrWhiteSpace(_nomeAluno) ||
-                     !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"));
+            } while (string.IsNullOrWhiteSpace(_nomeAluno) || !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"));
 
             nomeAluno[contador] = _nomeAluno;
 
@@ -174,9 +169,7 @@ class Program
 
             if (contador < 10)
             {
-                Console.WriteLine(
-                    "Cadastro realizado com sucesso! Deseja cadastrar outro aluno? (s/n)"
-                );
+                Console.WriteLine("Cadastro realizado com sucesso! Deseja cadastrar outro aluno? (s/n)");
 
                 cadastrarNovoAluno = Console.ReadLine();
             }
@@ -184,9 +177,7 @@ class Program
             {
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(
-                    "Limite de cadastro atingido! Não é possível cadastrar mais alunos."
-                );
+                Console.WriteLine("Limite de cadastro atingido! Não é possível cadastrar mais alunos.");
                 Console.ResetColor();
 
                 cadastrarNovoAluno = "n";
