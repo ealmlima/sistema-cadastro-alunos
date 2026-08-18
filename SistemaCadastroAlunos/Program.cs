@@ -6,6 +6,7 @@ class Program
     static int[] idadeAluno = new int[10];
     static double[] nota1 = new double[10];
     static double[] nota2 = new double[10];
+    static int contador = 0;
 
     static void Main()
     {
@@ -16,14 +17,14 @@ class Program
         do
         {
             Console.WriteLine(" === Menu de opções ===");
-           
+
             Console.WriteLine();
             Console.WriteLine("1 - Listar alunos");
             Console.WriteLine("2 - Buscar aluno");
             Console.WriteLine("3 - Exibir aprovados");
-            Console.WriteLine("4 - Exibir média");
             Console.WriteLine("0 - Sair");
-            Console.WriteLine();             
+            Console.WriteLine();
+
             Console.WriteLine("Selecione a opção desejada:");
             Console.WriteLine();
 
@@ -49,22 +50,16 @@ class Program
                 case 3:
                     ExibirAprovados();
                     break;
-
-                case 4:
-                    ExibirMedia();
-                    break;
-
                 case 0:
                     Console.WriteLine("Programa Encerrado");
                     break;
-
                 default:
                     Console.WriteLine("Você selecionou uma opção inválida");
                     break;
             }
 
         } while (opcao != 0);
-      
+
         Console.ForegroundColor = ConsoleColor.White;
         Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.WriteLine("=== Menu ===");
@@ -73,7 +68,6 @@ class Program
 
     static void CadastroInicial()
     {
-        int contador = 0;
         string cadastrarNovoAluno;
 
         Console.ForegroundColor = ConsoleColor.Black;
@@ -85,6 +79,7 @@ class Program
         do
         {
             string _nomeAluno;
+
             Console.WriteLine("Aluno {0}", contador + 1);
             Console.WriteLine("--------------------");
 
@@ -103,14 +98,17 @@ class Program
                 }
 
             } while (string.IsNullOrWhiteSpace(_nomeAluno) || !Regex.IsMatch(_nomeAluno, @"^[a-zA-Z\s]+$"));
+
             nomeAluno[contador] = _nomeAluno;
 
             int _idadeAluno;
             bool isValidIdade = false;
+
             do
             {
                 Console.Write("Idade: ");
                 isValidIdade = int.TryParse(Console.ReadLine(), out _idadeAluno);
+
                 if (!isValidIdade || _idadeAluno <= 0 || _idadeAluno > 120)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -119,15 +117,19 @@ class Program
                     Console.ResetColor();
                     Console.WriteLine();
                 }
+
             } while (!isValidIdade || _idadeAluno <= 0 || _idadeAluno > 120);
+
             idadeAluno[contador] = _idadeAluno;
 
             double _nota1;
             bool isValidNota1 = false;
+
             do
             {
                 Console.Write("Nota 1: ");
                 isValidNota1 = double.TryParse(Console.ReadLine(), out _nota1);
+
                 if (!isValidNota1 || _nota1 < 0 || _nota1 > 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -136,15 +138,19 @@ class Program
                     Console.ResetColor();
                     Console.WriteLine();
                 }
+
             } while (!isValidNota1 || _nota1 < 0 || _nota1 > 10);
+
             nota1[contador] = _nota1;
 
             double _nota2;
             bool isValidNota2 = false;
+
             do
             {
                 Console.Write("Nota 2: ");
                 isValidNota2 = double.TryParse(Console.ReadLine(), out _nota2);
+
                 if (!isValidNota2 || _nota2 < 0 || _nota2 > 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -153,7 +159,9 @@ class Program
                     Console.ResetColor();
                     Console.WriteLine();
                 }
+
             } while (!isValidNota2 || _nota2 < 0 || _nota2 > 10);
+
             nota2[contador] = _nota2;
 
             Console.WriteLine();
@@ -162,6 +170,7 @@ class Program
             if (contador < 10)
             {
                 Console.WriteLine("Cadastro realizado com sucesso! Deseja cadastrar outro aluno? (s/n)");
+
                 cadastrarNovoAluno = Console.ReadLine();
             }
             else
@@ -170,13 +179,14 @@ class Program
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Limite de cadastro atingido! Não é possível cadastrar mais alunos.");
                 Console.ResetColor();
+
                 cadastrarNovoAluno = "n";
             }
 
-        } while (cadastrarNovoAluno.ToLower() == "s" && contador < 10)
+        } while (cadastrarNovoAluno.ToLower() == "s" && contador < 10);
     }
 
-    static void ListarAlunos(string[] nomeAluno, int[] idadeAluno, double[] nota1, double[] nota2, int contador)
+    static void ListarAlunos()
     {
         for (int i = 0; i < contador; i++)
         {
@@ -189,48 +199,56 @@ class Program
             Console.WriteLine();
             Console.WriteLine("-------------------------");
         }
-
     }
 
-    static void  BuscarAluno(string[] nomes, int[] idades, double[] notas1 , double[] notas2)
+    static void BuscarAluno()
     {
-      Console.Write("Digite o nome do Aluno: ");
-      string nomeBusca = Console.ReadLine();
+        Console.Write("Digite o nome do Aluno: ");
 
-      bool encontrado = false;
+        string? nomeBusca = Console.ReadLine();
 
-    for(int i = 0; i<nomes.Length;i++)
-    {
-        if(nomes[i] == nomeBusca)
+        if (string.IsNullOrWhiteSpace(nomeBusca))
         {
-            encontrado = true;
-
-            double media = CalcularMedia(notas1[i], notas2[i]);
-
-            Console.WriteLine("Aluno encontrado!");
-            Console.WriteLine($"Nome: {nomes[i]}");
-            Console.WriteLine($"Idade: {idades[i]}");
-            Console.WriteLine($"Nota 1: {notas1[i]}");
-            Console.WriteLine($"Nota 2: {notas2[i]}");
-            Console.WriteLine($"Média: {media}");
-
-            break;
+            Console.WriteLine("Nome inválido.");
+            return;
         }
-      
-        if(!encontrado)
+
+        bool encontrado = false;
+
+        for (int i = 0; i < contador; i++)
         {
-            Console.WriteLine("Aluno não encontrado");
+            if (nomeAluno[i].Equals(nomeBusca, StringComparison.OrdinalIgnoreCase))
+            {
+                encontrado = true;
+
+                double media = CalcularMedia(nota1[i], nota2[i]);
+
+                Console.WriteLine();
+                Console.WriteLine("Aluno encontrado!");
+                Console.WriteLine($"Nome: {nomeAluno[i]}");
+                Console.WriteLine($"Idade: {idadeAluno[i]}");
+                Console.WriteLine($"Nota 1: {nota1[i]}");
+                Console.WriteLine($"Nota 2: {nota2[i]}");
+                Console.WriteLine($"Média: {media:F1}");
+
+                break;
+            }
+        }
+
+        if (!encontrado)
+        {
+            Console.WriteLine("Aluno não encontrado.");
         }
     }
 
-    static void ExibirAprovados(string[] nomeAluno, double[] nota1, double[] nota2)
+    static void ExibirAprovados()
     {
         int totalAprovados = 0;
 
         Console.WriteLine("=== Alunos aprovados ===");
         Console.WriteLine();
 
-        for (int i = 0; i < nomeAluno.Length; i++)
+        for (int i = 0; i < contador; i++)
         {
             double media = CalcularMedia(nota1[i], nota2[i]);
 
@@ -239,8 +257,6 @@ class Program
                 Console.WriteLine($"{nomeAluno[i]} - Média: {media:F1}");
                 totalAprovados++;
             }
-
-            //não lê a idade do aluno porque não é exibido no resultado final
         }
 
         Console.WriteLine();
