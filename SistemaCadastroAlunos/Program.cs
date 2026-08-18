@@ -176,11 +176,20 @@ class Program
         } while (cadastrarNovoAluno.ToLower() == "s" && contador < 10)
     }
 
-    // Funções
-
-    static void ListarAlunos()
+    static void ListarAlunos(string[] nomeAluno, int[] idadeAluno, double[] nota1, double[] nota2, int contador)
     {
-        Console.WriteLine("Listando alunos...");
+        for (int i = 0; i < contador; i++)
+        {
+            double mediaNotas = CalcularMedia(nota1[i], nota2[i]);
+
+            Console.WriteLine($"Nome: {nomeAluno[i]}");
+            Console.WriteLine($"Idade: {idadeAluno[i]}");
+            Console.WriteLine($"Média: {mediaNotas:F1}");
+
+            Console.WriteLine();
+            Console.WriteLine("-------------------------");
+        }
+
     }
 
     static void BuscarAluno()
@@ -196,5 +205,10 @@ class Program
     static void ExibirMedia()
     {
         Console.WriteLine("Exibindo média...");
+    }
+  
+    static double CalcularMedia(double nota1, double nota2)
+    {
+        return (nota1 + nota2) / 2;
     }
 }
