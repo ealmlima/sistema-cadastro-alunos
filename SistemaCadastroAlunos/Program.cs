@@ -197,16 +197,30 @@ class Program
         Console.WriteLine("Buscando aluno...");
     }
 
-    static void ExibirAprovados()
+    static void ExibirAprovados(string[] nomeAluno, double[] nota1, double[] nota2)
     {
-        Console.WriteLine("Exibindo alunos aprovados...");
+        int totalAprovados = 0;
+
+        Console.WriteLine("=== Alunos aprovados ===");
+        Console.WriteLine();
+
+        for (int i = 0; i < nomeAluno.Length; i++)
+        {
+            double media = CalcularMedia(nota1[i], nota2[i]);
+
+            if (media >= 7)
+            {
+                Console.WriteLine($"{nomeAluno[i]} - Média: {media:F1}");
+                totalAprovados++;
+            }
+
+            //não lê a idade do aluno porque não é exibido no resultado final
+        }
+
+        Console.WriteLine();
+        Console.WriteLine($"Total: {totalAprovados} alunos");
     }
 
-    static void ExibirMedia()
-    {
-        Console.WriteLine("Exibindo média...");
-    }
-  
     static double CalcularMedia(double nota1, double nota2)
     {
         return (nota1 + nota2) / 2;
