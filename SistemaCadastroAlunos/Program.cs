@@ -2,14 +2,13 @@
 {
     static void Main()
     {
-       
 
 
     }
 
-    static void ListarAlunos(string[] nomeAluno, int[] idadeAluno, double[] nota1, double[] nota2)
+    static void ListarAlunos(string[] nomeAluno, int[] idadeAluno, double[] nota1, double[] nota2, int contador)
     {
-        for (int i = 0; i < nomeAluno.Length; i++)
+        for (int i = 0; i < contador; i++)
         {
             double mediaNotas = CalcularMedia(nota1[i], nota2[i]);
 
